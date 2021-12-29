@@ -43,13 +43,12 @@ public class SongsController : ControllerBase
 		return Ok(song);
 	}
 
-	[HttpPost("add")]
-	public async Task<ActionResult<Models.SongModel>> AddSong(Models.SongModel songDTO)
+	[HttpPost]
+	public async Task<ActionResult<Models.SongModel>> PostSong(Models.SongModel songDTO)
 	{
 		Beansaber.Models.SongModel song = new()
 		{
-			Id = songDTO.Id,
-			DateAdded = DateTime.Now,
+			Id = songDTO.Id
 		};
 
 		_db.AddSong(song);
