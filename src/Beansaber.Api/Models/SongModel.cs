@@ -1,6 +1,6 @@
 ﻿namespace Beansaber.Api.Models;
 
-public class SongModelDto
+public class SongModel
 {
 	public int Id { get; set; }
 }

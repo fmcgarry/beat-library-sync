@@ -18,9 +18,9 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<ActionResult<IEnumerable<SongModel>>> GetSongs()
+	public async Task<ActionResult<IEnumerable<Models.SongModel>>> GetSongs()
 	{
-		List<SongModel>? songs = _db.GetAllSongs().ToList();
+		List<Beansaber.Models.SongModel>? songs = _db.GetAllSongs().ToList();
 
 		if (songs is null)
 		{
@@ -31,9 +31,9 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpGet("{id}")]
-	public async Task<ActionResult<SongModel>> GetSong(int id)
+	public async Task<ActionResult<Models.SongModel>> GetSong(int id)
 	{
-		SongModel? song = _db.FindSong(id);
+		Beansaber.Models.SongModel? song = _db.FindSong(id);
 
 		if (song is null)
 		{
@@ -44,9 +44,13 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpPost("add")]
-	public async Task<ActionResult<SongModel>> Add(SongModel song)
+	public async Task<ActionResult<Models.SongModel>> AddSong(Models.SongModel songDTO)
 	{
-		List<int> ids = new();
+		Beansaber.Models.SongModel song = new()
+		{
+			Id = songDTO.Id,
+			DateAdded = DateTime.Now,
+		};
 
 		_db.AddSong(song);
 
