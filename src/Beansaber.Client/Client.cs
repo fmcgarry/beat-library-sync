@@ -75,13 +75,16 @@ public class Client
 	{
 		try
 		{
-			HttpResponseMessage response = await _httpClient.PostAsJsonAsync(_options.AddSongsUri, songs);
-
-			if (response.IsSuccessStatusCode == false)
+			foreach (var song in songs)
 			{
-				Debug.Assert(response.IsSuccessStatusCode);
-				_logger.LogError("Failed to add new songs to server: Code {code}.", response.StatusCode);
-				return false;
+				HttpResponseMessage response = await _httpClient.PostAsJsonAsync(_options.SongsUri, song);
+
+				if (response.IsSuccessStatusCode == false)
+				{
+					Debug.Assert(response.IsSuccessStatusCode);
+					_logger.LogError("Failed to add new songs to server: Code {code}.", response.StatusCode);
+					return false;
+				}
 			}
 
 			return true;
@@ -98,7 +101,7 @@ public class Client
 	{
 		try
 		{
-			List<SongModel>? remoteSongs = await _httpClient.GetFromJsonAsync<List<SongModel>>(_options.GetSongsUri);
+			List<SongModel>? remoteSongs = await _httpClient.GetFromJsonAsync<List<SongModel>>(_options.SongsUri);
 
 			if (remoteSongs is null)
 			{

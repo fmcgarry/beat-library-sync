@@ -14,8 +14,5 @@ public class ClientOptions
 	public string BaseAddress { get; set; } = string.Empty;
 
 	[Required]
-	public string AddSongsUri { get; set; } = string.Empty;
-
-	[Required]
-	public string GetSongsUri { get; set; } = string.Empty;
+	public string SongsUri { get; set; } = string.Empty;
 }

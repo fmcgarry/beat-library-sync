@@ -27,8 +27,7 @@ var logger = loggerFactory.CreateLogger<Program>();
 var options = Options.Create(new ClientOptions()
 {
 	BaseAddress = "https://localhost:7209",
-	AddSongsUri = "/songs/add",
-	GetSongsUri = "/songs/all"
+	SongsUri = "/songs",
 });
 
 var client = new Client(options, loggerFactory.CreateLogger<Client>());
