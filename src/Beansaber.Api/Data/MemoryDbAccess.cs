@@ -16,12 +16,12 @@ public class MemoryDbAccess : IDbAccess
 	{
 		return _songModels.FirstOrDefault(x => x.Id == id);
 	}
-	public List<SongModel> FindSongs(List<int> ids)
+	public IEnumerable<SongModel> FindSongs(IEnumerable<int> ids)
 	{
-		return _songModels.Where(x => ids.Contains(x.Id)).ToList();
+		return _songModels.Where(x => ids.Contains(x.Id));
 	}
 
-	public List<SongModel> GetAllSongs()
+	public IEnumerable<SongModel> GetAllSongs()
 	{
 		return _songModels;
 	}

@@ -17,8 +17,21 @@ public class SongsController : ControllerBase
 		_db = db;
 	}
 
+	[HttpGet]
+	public async Task<ActionResult<IEnumerable<SongModel>>> GetSongs()
+	{
+		List<SongModel>? songs = _db.GetAllSongs().ToList();
+
+		if (songs is null)
+		{
+			return BadRequest();
+		}
+
+		return Ok(songs);
+	}
+
 	[HttpGet("{id}")]
-	public ActionResult<SongModel> Get(int id)
+	public async Task<ActionResult<SongModel>> GetSong(int id)
 	{
 		SongModel? song = _db.FindSong(id);
 
@@ -30,43 +43,13 @@ public class SongsController : ControllerBase
 		return Ok(song);
 	}
 
-	[HttpGet("all")]
-	public ActionResult<List<SongModel>> GetAll()
-	{
-		List<SongModel>? songs = _db.GetAllSongs();
-
-		if (songs is null)
-		{
-			return BadRequest("Could not find any songs");
-		}
-
-		return Ok(songs);
-	}
-
-	[HttpGet("get-multiple")]
-	public ActionResult<SongModel> GetSongs(List<int> ids)
-	{
-		List<SongModel> song = _db.FindSongs(ids);
-
-		if (song is null)
-		{
-			return NotFound();
-		}
-
-		return Ok(song);
-	}
-
 	[HttpPost("add")]
-	public ActionResult<SongModel> Add(List<SongModel> songs)
+	public async Task<ActionResult<SongModel>> Add(SongModel song)
 	{
 		List<int> ids = new();
 
-		foreach (SongModel song in songs)
-		{
-			_db.AddSong(song);
-			ids.Add(song.Id);
-		}
+		_db.AddSong(song);
 
-		return GetSongs(ids);
+		return CreatedAtAction(nameof(GetSong), new { id = song.Id }, song);
 	}
 }
