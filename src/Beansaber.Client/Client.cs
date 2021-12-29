@@ -18,7 +18,7 @@ public class Client
 		_options = options.Value;
 		_logger = logger;
 
-		//_httpClient.BaseAddress = new Uri(_options.BaseAddress);
+		_httpClient.BaseAddress = new Uri(_options.BaseAddress);
 	}
 
 	public async Task<IEnumerable<SongModel>> SyncSongsAsync(IEnumerable<SongModel> localSongs)
