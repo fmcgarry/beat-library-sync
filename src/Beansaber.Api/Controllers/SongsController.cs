@@ -31,7 +31,7 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpGet("{id}")]
-	public async Task<ActionResult<Models.SongModel>> GetSong(int id)
+	public async Task<ActionResult<Models.SongModel>> GetSong(string id)
 	{
 		Beansaber.Models.SongModel? song = _db.FindSong(id);
 

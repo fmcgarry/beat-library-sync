@@ -9,7 +9,13 @@ builder.Services.Configure<RouteOptions>(options =>
 	options.LowercaseUrls = true;
 });
 
-builder.Services.AddSingleton<IDbAccess, MemoryDbAccess>();
+
+builder.Services.AddOptions<CosmosDbAccessOptions>()
+	.Bind(builder.Configuration.GetSection("CosmosDb"))
+	.ValidateDataAnnotations()
+	.ValidateOnStart();
+
+builder.Services.AddSingleton<IDbAccess, CosmosDbAccess>();
 
 builder.Services.AddControllers();
 

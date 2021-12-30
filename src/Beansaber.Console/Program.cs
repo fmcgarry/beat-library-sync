@@ -34,9 +34,9 @@ var client = new Client(options, loggerFactory.CreateLogger<Client>());
 
 var songs = new List<SongModel>
 {
-	new SongModel { Id = 1 },
-	new SongModel { Id = 2 },
-	new SongModel { Id = 3 },
+	new SongModel { Id = "1" },
+	new SongModel { Id = "2" },
+	new SongModel { Id = "3" },
 };
 
 var newSongs = client.SyncSongsAsync(songs);
@@ -51,8 +51,8 @@ var asdf = newSongs.Result.ToList();
 // round 2 boogaloo
 var songs2 = new List<SongModel>
 {
-	new SongModel { Id = 1 },
-	new SongModel { Id = 2 },
+	new SongModel { Id = "1" },
+	new SongModel { Id = "2" },
 };
 
 var newSongs2 = client.SyncSongsAsync(songs2);

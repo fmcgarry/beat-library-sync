@@ -4,9 +4,9 @@ namespace Beansaber.Api.Interfaces;
 
 public interface IDbAccess
 {
-	public SongModel? FindSong(int id);
+	public SongModel? FindSong(string id);
 
-	public IEnumerable<SongModel> FindSongs(IEnumerable<int> ids);
+	public IEnumerable<SongModel> FindSongs(IEnumerable<string> ids);
 
 	public IEnumerable<SongModel> GetAllSongs();
 

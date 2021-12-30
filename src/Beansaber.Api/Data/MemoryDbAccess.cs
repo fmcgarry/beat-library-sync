@@ -12,11 +12,11 @@ public class MemoryDbAccess : IDbAccess
 		_songModels.Add(song);
 	}
 
-	public SongModel? FindSong(int id)
+	public SongModel? FindSong(string id)
 	{
 		return _songModels.FirstOrDefault(x => x.Id == id);
 	}
-	public IEnumerable<SongModel> FindSongs(IEnumerable<int> ids)
+	public IEnumerable<SongModel> FindSongs(IEnumerable<string> ids)
 	{
 		return _songModels.Where(x => ids.Contains(x.Id));
 	}
