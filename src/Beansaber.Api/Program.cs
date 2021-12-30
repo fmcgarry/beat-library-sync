@@ -1,3 +1,4 @@
+using Beansaber.Api;
 using Beansaber.Api.Data;
 using Beansaber.Api.Interfaces;
 
@@ -9,13 +10,19 @@ builder.Services.Configure<RouteOptions>(options =>
 	options.LowercaseUrls = true;
 });
 
-
 builder.Services.AddOptions<CosmosDbAccessOptions>()
 	.Bind(builder.Configuration.GetSection("CosmosDb"))
 	.ValidateDataAnnotations()
 	.ValidateOnStart();
 
-builder.Services.AddSingleton<IDbAccess, CosmosDbAccess>();
+if (builder.Configuration.GetValue<bool>("Features:Database:UseInMemory"))
+{
+	builder.Services.AddSingleton<IDbAccess, MemoryDbAccess>();
+}
+else
+{
+	builder.Services.AddSingleton<IDbAccess, CosmosDbAccess>();
+}
 
 builder.Services.AddControllers();
 
