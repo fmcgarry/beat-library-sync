@@ -1,6 +1,4 @@
-﻿using Beansaber.Client;
-using Beansaber.Models;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Net.Http.Json;

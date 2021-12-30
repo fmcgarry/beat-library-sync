@@ -1,7 +1,3 @@
-using Beansaber.Api;
-using Beansaber.Api.Data;
-using Beansaber.Api.Interfaces;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

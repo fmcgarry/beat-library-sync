@@ -8,12 +8,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Azure.Cosmos" Version="3.23.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Beansaber.Models\Beansaber.Models.csproj" />
+		<ProjectReference Include="..\Beansaber.Core\Beansaber.Core.csproj" />
+		<ProjectReference Include="..\Beansaber.Infrastructure\Beansaber.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

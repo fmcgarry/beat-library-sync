@@ -1,8 +1,4 @@
-﻿using Beansaber.Api.Interfaces;
-using Beansaber.Api.Models;
-using Beansaber.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Beansaber.Api.Controllers;
 
@@ -18,11 +14,11 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<ActionResult<IEnumerable<Models.SongModel>>> GetSongs()
+	public async Task<ActionResult<IEnumerable<ISongModel>>> GetSongs()
 	{
-		List<Beansaber.Models.SongModel>? songs = _db.GetAllSongs().ToList();
+		IEnumerable<ISongModel> foundSongs = _db.GetAllSongs();
 
-		if (songs is null)
+		if (foundSongs is not List<SongModel> songs)
 		{
 			return BadRequest();
 		}
@@ -31,11 +27,11 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpGet("{id}")]
-	public async Task<ActionResult<Models.SongModel>> GetSong(string id)
+	public async Task<ActionResult<ISongModel>> GetSong(string id)
 	{
-		Beansaber.Models.SongModel? song = _db.FindSong(id);
+		ISongModel? foundSong = _db.FindSong(id);
 
-		if (song is null)
+		if (foundSong is not SongModel song)
 		{
 			return NotFound();
 		}
@@ -44,11 +40,11 @@ public class SongsController : ControllerBase
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<Models.SongModel>> PostSong(Models.SongModel songDTO)
+	public async Task<ActionResult<SongModel>> PostSong(SongModel songDTO)
 	{
-		Beansaber.Models.SongModel song = new()
+		SongModel song = new()
 		{
-			BeatSaverId = songDTO.Id
+			BeatSaverId = songDTO.BeatSaverId
 		};
 
 		_db.AddSong(song);

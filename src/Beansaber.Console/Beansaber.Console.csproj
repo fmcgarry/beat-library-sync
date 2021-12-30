@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Beansaber.Client\Beansaber.Api.Client.csproj" />
-    <ProjectReference Include="..\Beansaber.Models\Beansaber.Models.csproj" />
   </ItemGroup>
 
 </Project>

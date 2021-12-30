@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Beansaber.Api.Data;
 
 public class CosmosDbAccessOptions
 {
