@@ -4,14 +4,17 @@ namespace Beansaber.Models;
 
 public class SongModel
 {
-	[JsonProperty(PropertyName = "id")]
-	public string Id { get; set; } = string.Empty;
+	public string Name { get; set; } = string.Empty;
 
-	public DateTime DateAdded { get; } = DateTime.UtcNow;
+	public string UploadedBy { get; set; } = string.Empty;
 
-	public override bool Equals(object? obj) => obj is SongModel model && Id == model.Id;
+	public string BeatSaverId { get; set; } = string.Empty;
 
-	public override int GetHashCode() => HashCode.Combine(Id);
+	public DateTime DateAdded { get; } = DateTime.MinValue;
+
+	public override bool Equals(object? obj) => obj is SongModel model && BeatSaverId == model.BeatSaverId;
+
+	public override int GetHashCode() => HashCode.Combine(BeatSaverId);
 
 	public static bool operator ==(SongModel? left, SongModel? right) => EqualityComparer<SongModel>.Default.Equals(left, right);
 

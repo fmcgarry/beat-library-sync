@@ -48,11 +48,11 @@ public class SongsController : ControllerBase
 	{
 		Beansaber.Models.SongModel song = new()
 		{
-			Id = songDTO.Id
+			BeatSaverId = songDTO.Id
 		};
 
 		_db.AddSong(song);
 
-		return CreatedAtAction(nameof(GetSong), new { id = song.Id }, song);
+		return CreatedAtAction(nameof(GetSong), new { id = song.BeatSaverId }, song);
 	}
 }

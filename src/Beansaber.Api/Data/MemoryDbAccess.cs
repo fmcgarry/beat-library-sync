@@ -14,11 +14,11 @@ public class MemoryDbAccess : IDbAccess
 
 	public SongModel? FindSong(string id)
 	{
-		return _songModels.FirstOrDefault(x => x.Id == id);
+		return _songModels.FirstOrDefault(x => x.BeatSaverId == id);
 	}
 	public IEnumerable<SongModel> FindSongs(IEnumerable<string> ids)
 	{
-		return _songModels.Where(x => ids.Contains(x.Id));
+		return _songModels.Where(x => ids.Contains(x.BeatSaverId));
 	}
 
 	public IEnumerable<SongModel> GetAllSongs()
