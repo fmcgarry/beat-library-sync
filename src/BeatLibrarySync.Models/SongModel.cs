@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Beansaber.Models;
+namespace BeatLibrarySync.Models;
 
 public class SongModel
 {
