@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Beansaber.Api.Controllers;
+namespace BeatLibrarySync.Api.Controllers;
 
 [Route("[controller]")]
 [ApiController]

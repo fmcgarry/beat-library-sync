@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Net.Http.Json;
 
-namespace Beansaber.Api.Client;
+namespace BeatLibrarySync.Api.Client;
 
 public class Client
 {
